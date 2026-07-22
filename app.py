@@ -6,13 +6,13 @@ import os
 app = Flask(__name__)
 
 def get_db_connection():
-    # Menambahkan opsi DB_PORT karena filess.io sering menggunakan port 3307
+    # Menggunakan kredensial langsung (hardcoded) sesuai permintaan
     return connector.connect(
-        host=os.environ.get('DB_HOST', 'localhost'),
-        port=int(os.environ.get('DB_PORT', 3306)),
-        user=os.environ.get('DB_USER', 'root'),
-        passwd=os.environ.get('DB_PASS', ''),
-        database=os.environ.get('DB_NAME', 'db_kuliah')
+        host='usfhz9.h.filess.io',
+        port=3306,
+        user='tugasweb_cuttingyet',
+        passwd='d41e513c1ef09b9383839096ebd93de84895c1e6',
+        database='tugasweb_cuttingyet'
     )
 
 @app.route('/')
