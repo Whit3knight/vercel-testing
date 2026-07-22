@@ -1,33 +1,39 @@
 {% extends 'base.html' %}
-{% block judul %} Data Mahasiswa {% endblock %}
 
-{% block JudulKonten %}
-    <a href="/tambah/" class="btn btn-info"> Tambah Data </a>
-{% endblock %}
+{% block title %}Data Mahasiswa{% endblock %}
 
-{% block konten %}
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>NIM</th>
-                <th>Nama</th>
-                <th>Asal</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for row in hasil %}
-            <tr>
-                <td>{{ row.0 }}</td>
-                <td>{{ row.1 }}</td>
-                <td>{{ row.2 }}</td>
-                <td>
-                    <a href="/ubah/{{ row.0 }}" class="btn btn-warning btn-sm"> Ubah </a>
-                    <a href="/hapus/{{ row.0 }}" class="btn btn-danger btn-sm"
-                       onclick="return confirm('Yakin akan menghapus {{ row.1 }} ?')"> Hapus </a>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+{% block content %}
+<div class="card shadow">
+    <div class="card-header custom-card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Data Mahasiswa</h4>
+            <a href="/tambah/" class="btn btn-primary">Tambah Mahasiswa</a>
+        </div>
+    </div>
+    <div class="card-body mt-3">
+        <table class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th width="150">NIM</th>
+                    <th>Nama Mahasiswa</th>
+                    <th>Asal</th>
+                    <th width="180">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in hasil %}
+                <tr>
+                    <td>{{ row.0 }}</td>
+                    <td>{{ row.1 }}</td>
+                    <td>{{ row.2 }}</td>
+                    <td>
+                        <a href="/ubah/{{ row.0 }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="/hapus/{{ row.0 }}" class="btn btn-danger btn-sm" onclick="return confirm('Hapus data mahasiswa ini?')">Hapus</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

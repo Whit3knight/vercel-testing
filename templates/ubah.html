@@ -1,30 +1,38 @@
 {% extends 'base.html' %}
-{% block judul %} Ubah Data Mahasiswa {% endblock %}
 
-{% block JudulKonten %}
-    <h3 class="box-title"> Ubah Data Mahasiswa </h3>
-{% endblock %}
+{% block title %}Ubah Data Mahasiswa{% endblock %}
 
-{% block konten %}
-    <form action="{{ url_for('proses_ubah') }}" method="POST">
-        {% for row in hasil %}
-        <div class="form-group">
-            <label>No Induk Mahasiswa</label>
-            <input type="hidden" name="nim_ori" value="{{ row.0 }}">
-            <input type="text" name="nim" class="form-control" value="{{ row.0 }}" required>
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header custom-card-header">
+                <h4 class="mb-0">Ubah Data Mahasiswa</h4>
+            </div>
+            <div class="card-body mt-3">
+                <form action="/proses_ubah/" method="POST">
+                    {% set data = hasil[0] %}
+                    <input type="hidden" name="nim_ori" value="{{ data.0 }}">
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">NIM</label>
+                        <input type="text" class="form-control" name="nim" required value="{{ data.0 }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nama Lengkap</label>
+                        <input type="text" class="form-control" name="nama" required value="{{ data.1 }}">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Asal</label>
+                        <input type="text" class="form-control" name="asal" required value="{{ data.2 }}">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4">Simpan Perubahan</button>
+                        <a href="/" class="btn btn-light px-4">Batal</a>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label>Nama Lengkap</label>
-            <input type="text" name="nama" class="form-control" value="{{ row.1 }}" required>
-        </div>
-        <div class="form-group">
-            <label>Asal</label>
-            <input type="text" name="asal" class="form-control" value="{{ row.2 }}" required>
-        </div>
-        {% endfor %}
-        <div class="box-footer">
-            <a href="{{ url_for('index') }}" class="btn btn-default"> Cancel </a>
-            <button type="submit" class="btn btn-primary pull-right"> Submit </button>
-        </div>
-    </form>
+    </div>
+</div>
 {% endblock %}
